@@ -358,3 +358,25 @@ textarea:focus-visible,
 /* ── Logo images ───────────────────────────────────────────────────────────── */
 .brand-logo{height:32px;width:auto;display:block;object-fit:contain}
 @media(max-width:520px){.brand-logo{height:26px}}
+
+/* ── Logo size + positioning fixes ────────────────────────────────────────── */
+/* Bigger logo, perfectly centred in the 78px header */
+.brand{display:flex;align-items:center;padding:0}
+.brand-logo{height:42px;width:auto;display:block;object-fit:contain}
+@media(max-width:850px){.brand-logo{height:36px}}
+@media(max-width:520px){.brand-logo{height:30px}}
+
+/* ── Search panel date input fixes ────────────────────────────────────────── */
+/* Hide browser-native calendar picker icon — we show our own CalendarDays svg */
+.search-field input[type="date"]::-webkit-calendar-picker-indicator{opacity:0;width:0;padding:0;margin:0}
+.search-field input[type="date"]::-webkit-inner-spin-button{display:none}
+/* Make placeholder text match the other fields */
+.search-field input[type="date"]{color:var(--ink);min-width:0;width:100%}
+.search-field input[type="date"]:not(:valid){color:#a09688}
+/* Number input — hide spinner arrows */
+.search-field input[type="number"]::-webkit-inner-spin-button,
+.search-field input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.search-field input[type="number"]{-moz-appearance:textfield}
+
+/* ── Search panel column widths (override the 5-col rule set earlier) ──────── */
+.search-panel{grid-template-columns:1.8fr 1fr 1fr 0.7fr auto}
