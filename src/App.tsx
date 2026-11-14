@@ -7,7 +7,6 @@ import {
   ChevronDown,
   Clock3,
   Heart,
-  House,
   MapPin,
   Menu,
   Search,
@@ -511,8 +510,7 @@ function App() {
     <div className="app-shell">
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Karibu Stay home">
-          <span className="brand-mark"><House size={17} strokeWidth={2.2} /></span>
-          <span>Karibu <em>Stay</em></span>
+          <img src="/logo-horizontal-dark-text.png" alt="Karibu Stay" className="brand-logo" />
         </a>
         <nav className={`main-nav ${menuOpen ? 'is-open' : ''}`}>
           <a className={view === 'discover' ? 'active' : ''} href="#search" onClick={switchView('discover')}>Find a stay</a>
