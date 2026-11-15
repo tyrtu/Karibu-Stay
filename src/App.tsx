@@ -636,8 +636,7 @@ function App() {
               <button onClick={() => setFilterOpen(false)} aria-label="Close filters"><X size={15} /></button>
             </div>}
 
-            <div className="results-layout">
-              <div className="listing-column">
+            <div className="listing-column">
                 <div className="listing-count">
                   <span>{loadingListings ? 'Loading stays…' : `${visibleVenues.length || 0} ${visibleVenues.length === 1 ? 'stay' : 'stays'}`}</span>
                   <span className="subtle">
@@ -674,35 +673,6 @@ function App() {
                     {loadingMore ? <><span className="spin" style={{ display: 'inline-block' }}>↻</span> Loading…</> : <>Load more stays <ArrowRight size={16} /></>}
                   </button>
                 )}
-              </div>
-
-              {/* MAP PANEL — temporarily commented out, to be re-integrated with a fixed-position approach
-              <div className="map-panel" aria-label={`Map of stays near ${venueFilter !== 'all' ? venueFilter : 'tournament venues'}`}>
-                <div className="map-overlay map-title">
-                  <span className="map-dot" />
-                  {venueFilter !== 'all' ? venueFilter : 'All venues'}
-                  <span>·</span>
-                  {(() => {
-                    const venueMarker = mapMarkers.find((m) => m.isVenue && (venueFilter === 'all' || m.title === venueFilter));
-                    if (!venueMarker) return 'Nairobi';
-                    const name = venueMarker.title.toLowerCase();
-                    if (name.includes('mandela')) return 'Kampala';
-                    if (name.includes('mkapa')) return 'Dar es Salaam';
-                    return 'Nairobi';
-                  })()}
-                </div>
-                <MapView
-                  markers={mapMarkers}
-                  selectedId={selectedVenue?.listingId ?? null}
-                  focusVenueName={venueFilter !== 'all' ? venueFilter : null}
-                  onSelect={(id) => {
-                    const venue = venueData.find((v) => v.listingId === id);
-                    if (venue) setSelectedVenue(venue);
-                  }}
-                />
-                <div className="map-legend"><span><i className="legend-stay" /> Stay</span><span><i className="legend-venue" /> Venue</span></div>
-              </div>
-              */}
             </div>
           </section>
 
