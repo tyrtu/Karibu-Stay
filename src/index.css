@@ -750,3 +750,17 @@ textarea:focus-visible,
 
 /* 5. Hide hero body text on mobile */
 @media(max-width:850px){.hero-copy p{display:none}}
+
+/* ── Mobile search panel — clean 3-row layout ──────────────────────────────── */
+@media(max-width:850px){
+  .search-panel{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"where where""checkin checkout""guests btn";border:1px solid var(--ink)}
+  .location-field{grid-area:where;border-right:0;border-bottom:1px solid var(--line)}
+  .search-field-checkin{grid-area:checkin;border-right:1px solid var(--line)!important;border-bottom:1px solid var(--line)}
+  .search-field-checkout{grid-area:checkout;border-right:0;border-bottom:1px solid var(--line)}
+  .search-field-guests{grid-area:guests;border-right:0;border-bottom:0}
+  .search-button{grid-area:btn;height:auto;margin:0;border-radius:0}
+}
+
+/* ── Logo — bigger on mobile ────────────────────────────────────────────────── */
+@media(max-width:850px){.brand-logo{height:40px !important}}
+@media(max-width:520px){.brand-logo{height:36px !important}}
