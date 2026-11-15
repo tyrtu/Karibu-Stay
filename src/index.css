@@ -565,3 +565,57 @@ textarea:focus-visible,
 /* ── Card grid spacing ─────────────────────────────────────────────────────── */
 .results-section>.listing-column .listing-cards-grid{gap:20px;background:transparent;border:0}
 @media(max-width:520px){.results-section>.listing-column .listing-cards-grid{gap:14px}}
+
+/* ── Results section — clean background, readable count bar ───────────────── */
+.results-section{background:var(--bone)}
+
+/* Count bar */
+.listing-count{
+  background:transparent;
+  border:0;
+  padding:0 0 18px;
+  margin-bottom:0;
+  font-family:'DM Mono',monospace;
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--ink);
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.listing-count span:first-child{font-weight:500}
+.listing-count .subtle{color:#8b8276}
+
+/* Card border radius + shadow */
+.listing-cards-grid .listing-row{
+  border-radius:6px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:0 1px 4px rgba(26,22,17,.06);
+  transition:box-shadow .2s,transform .2s;
+}
+.listing-cards-grid .listing-row:hover,
+.listing-cards-grid .listing-row.is-selected{
+  box-shadow:0 4px 16px rgba(26,22,17,.12);
+  transform:translateY(-2px);
+  background:#f0eadf;
+}
+.listing-cards-grid .listing-image-wrap{
+  border-radius:6px 6px 0 0;
+  overflow:hidden;
+}
+/* Info padding inside card */
+.listing-cards-grid .listing-info{
+  padding:14px 16px 18px;
+  background:var(--bone);
+}
+.listing-cards-grid .listing-info h3{
+  font-size:17px;
+  margin:6px 0 4px;
+  line-height:1.2;
+}
+.listing-cards-grid .muted-line{
+  font-size:12px;
+  margin-bottom:10px;
+}
