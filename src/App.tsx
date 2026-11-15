@@ -572,15 +572,15 @@ function App() {
                 <span>WHERE</span>
                 <div><MapPin size={17} /><input value={where} onChange={(event) => setWhere(event.target.value)} aria-label="Where" /></div>
               </label>
-              <label className="search-field">
+              <label className="search-field search-field-checkin">
                 <span>CHECK-IN</span>
                 <div><CalendarDays size={17} /><input type="date" value={checkIn} min={new Date().toISOString().split('T')[0]} onChange={(e) => { setCheckIn(e.target.value); if (checkOut && e.target.value >= checkOut) setCheckOut(''); }} aria-label="Check-in date" /></div>
               </label>
-              <label className="search-field">
+              <label className="search-field search-field-checkout">
                 <span>CHECK-OUT</span>
                 <div><CalendarDays size={17} /><input type="date" value={checkOut} min={checkIn || new Date().toISOString().split('T')[0]} onChange={(e) => setCheckOut(e.target.value)} aria-label="Check-out date" /></div>
               </label>
-              <label className="search-field">
+              <label className="search-field search-field-guests">
                 <span>GUESTS</span>
                 <div><Users size={17} /><input type="number" min="1" max="20" value={guests.match(/\d+/)?.[0] ?? '2'} onChange={(e) => setGuests(`${e.target.value} guests`)} aria-label="Number of guests" /></div>
               </label>
@@ -596,7 +596,7 @@ function App() {
                 <p>Places with personality, positioned around the venues that bring us together.</p>
               </div>
               <div className="results-tools">
-                <button className={`filter-toggle ${filterOpen ? 'selected' : ''}`} onClick={() => setFilterOpen(!filterOpen)}><SlidersHorizontal size={16} /> Filters <ChevronDown size={15} /></button>
+                <button className={`filter-toggle ${filterOpen ? 'selected' : ''}`} onClick={() => setFilterOpen(!filterOpen)}><SlidersHorizontal size={16} /> Filters</button>
                 <label className="sort-toggle">
                   <span>Sort:</span>
                   <select value={sortMode} onChange={(e) => setSortMode(e.target.value as typeof sortMode)} aria-label="Sort stays">
@@ -657,13 +657,25 @@ function App() {
                       <div className="listing-image-wrap">
                         <img src={venue.image} alt={`${venue.name} interior`} className="listing-image" />
                         {index === 0 && <span className="image-label">Guest favourite</span>}
+                        {venue.reviews === 0 && <span className="image-label image-label-new">New</span>}
                       </div>
                       <div className="listing-info">
-                        <div className="listing-topline"><span>{venue.type}</span><button className="heart-button" onClick={(event) => { event.stopPropagation(); toggleFavorite(venue); }} aria-label={`Save ${venue.name}`}><Heart size={18} fill={isFavorited(venue) ? 'currentColor' : 'none'} /></button></div>
+                        <div className="listing-topline">
+                          <span>{venue.type}</span>
+                          <button className="heart-button" onClick={(event) => { event.stopPropagation(); toggleFavorite(venue); }} aria-label={`Save ${venue.name}`}>
+                            <Heart size={18} fill={isFavorited(venue) ? 'currentColor' : 'none'} />
+                          </button>
+                        </div>
                         <h3>{venue.name}</h3>
-                        <p className="muted-line">{venue.area} <span>·</span> {venue.distance}</p>
+                        <p className="muted-line">
+                          {venue.area}
+                          {venue.distance && <><span>·</span> {venue.distance.replace(/ from .+$/, ' away')}</>}
+                        </p>
                         <div className="tags">{venue.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                        <div className="listing-bottom"><span className="rating">{venue.reviews > 0 ? <><Star size={13} fill="currentColor" /> {venue.rating} <small>({venue.reviews})</small></> : <small style={{ color: '#938b7e' }}>New listing</small>}</span><span className="rate"><strong>KSh {venue.rate.toLocaleString()}</strong> / night</span></div>
+                        <div className="listing-bottom">
+                          <span className="rating">{venue.reviews > 0 ? <><Star size={13} fill="currentColor" /> {venue.rating} <small>({venue.reviews})</small></> : null}</span>
+                          <span className="rate"><strong>KSh {venue.rate.toLocaleString()}</strong> / night</span>
+                        </div>
                       </div>
                     </article>
                   )) : <div className="empty-state"><Search size={20} /><p>No stays matched that place. Try searching Nairobi.</p></div>}
