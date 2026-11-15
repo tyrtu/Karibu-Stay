@@ -380,3 +380,55 @@ textarea:focus-visible,
 
 /* ── Search panel column widths (override the 5-col rule set earlier) ──────── */
 .search-panel{grid-template-columns:1.8fr 1fr 1fr 0.7fr auto}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESULTS LAYOUT — fixed-height sticky map, independently scrolling listings
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Results section: remove excessive bottom padding */
+.results-section{padding-bottom:0}
+
+/* Two-column split: listings left, map right */
+.results-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 42%;
+  gap:5vw;
+  align-items:start;   /* columns don't stretch to match each other */
+}
+
+/* Listing column: scrolls independently, capped to viewport */
+.listing-column{
+  max-height:calc(100vh - 180px);
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding-right:4px;
+  /* custom subtle scrollbar */
+  scrollbar-width:thin;
+  scrollbar-color:var(--line) transparent;
+}
+.listing-column::-webkit-scrollbar{width:4px}
+.listing-column::-webkit-scrollbar-track{background:transparent}
+.listing-column::-webkit-scrollbar-thumb{background:var(--line);border-radius:2px}
+
+/* Map panel: fixed height, sticky — never grows with the listing column */
+.map-panel{
+  height:calc(100vh - 180px);
+  min-height:420px;
+  max-height:860px;
+  position:sticky;
+  top:102px;
+  overflow:hidden;
+  border:1px solid #cfc7b6;
+  align-self:start;
+}
+
+/* On tablet, stack vertically — map goes below listings, full width, fixed height */
+@media(max-width:850px){
+  .results-layout{display:block}
+  .listing-column{max-height:none;overflow:visible;padding-right:0}
+  .map-panel{position:relative;top:0;height:400px;min-height:400px;margin-top:32px}
+}
+
+@media(max-width:520px){
+  .map-panel{height:300px;min-height:300px}
+}
