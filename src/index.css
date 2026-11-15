@@ -547,3 +547,17 @@ textarea:focus-visible,
 @media(min-width:1400px){.listing-cards-grid{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:850px){.listing-cards-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.listing-cards-grid{grid-template-columns:1fr}}
+
+/* ── FINAL: results-layout removed, listing-column is the section direct child ── */
+.results-section > .listing-column{display:block;width:100%}
+.results-section > .listing-column .listing-cards-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  width:100%;
+}
+@media(min-width:1400px){.results-section>.listing-column .listing-cards-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:1024px){.results-section>.listing-column .listing-cards-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.results-section>.listing-column .listing-cards-grid{grid-template-columns:1fr;background:transparent;border:0;gap:0}}
