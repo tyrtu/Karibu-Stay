@@ -692,3 +692,14 @@ textarea:focus-visible,
 
 /* ── Remove border box around listing count ────────────────────────────────── */
 .listing-count{border:0 !important;outline:0 !important;box-shadow:none !important}
+
+/* ── Mobile: force card layout on listing-cards-grid rows ──────────────────── */
+@media(max-width:850px){
+  .listing-cards-grid .listing-row{grid-template-columns:1fr !important}
+  .listing-cards-grid .listing-image-wrap{height:200px !important}
+  .listing-cards-grid .listing-info{padding:12px 14px 16px !important}
+}
+@media(max-width:520px){
+  .listing-cards-grid .listing-row{grid-template-columns:1fr !important}
+  .listing-cards-grid .listing-image-wrap{height:200px !important}
+}
