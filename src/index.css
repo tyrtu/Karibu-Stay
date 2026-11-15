@@ -686,3 +686,6 @@ textarea:focus-visible,
 .listing-cards-grid .listing-info h3{font-size:17px !important;margin:6px 0 4px !important}
 
 @media(max-width:850px){.results-section{padding:48px 5vw}}
+
+/* ── listing-column width fix — let parent padding control edges ───────────── */
+.listing-column{width:auto !important}
