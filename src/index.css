@@ -461,3 +461,81 @@ textarea:focus-visible,
 .listing-cards-grid .listing-row:last-child{
   border-bottom:1px solid var(--line);
 }
+
+/* ── Discover listings as card grid (map removed) ──────────────────────────── */
+.listing-column{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+/* Each card fills its cell */
+.listing-column .listing-row{
+  grid-template-columns:1fr;
+  border:0;
+  padding:0;
+  background:var(--bone);
+  gap:0;
+}
+.listing-column .listing-row:hover,
+.listing-column .listing-row.is-selected{background:#f0eadf}
+.listing-column .listing-image-wrap{height:200px}
+.listing-column .listing-info{padding:14px 16px 18px}
+.listing-column .listing-info h3{font-size:19px;margin:8px 0 4px}
+/* listing-count and load-more button sit outside the grid */
+.listing-count{grid-column:1/-1}
+.listing-column .load-more{
+  grid-column:1/-1;
+  margin:20px 0;
+  width:100%;
+  background:var(--bone);
+}
+/* Cap content width on very wide screens */
+@media(min-width:1400px){
+  .listing-column{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:850px){
+  .listing-column{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:520px){
+  .listing-column{grid-template-columns:1fr;background:transparent;border:0;gap:0}
+  .listing-column .listing-row{border-top:1px solid var(--line)}
+  .listing-column .listing-row:last-of-type{border-bottom:1px solid var(--line)}
+  .listing-column .listing-image-wrap{height:220px}
+  .listing-column .listing-info{padding:12px 0 16px}
+}
+
+/* ── listing-cards-grid: the actual card grid ──────────────────────────────── */
+.listing-cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin-bottom:0;
+}
+.listing-cards-grid .listing-row{
+  grid-template-columns:1fr;
+  border:0;
+  padding:0;
+  background:var(--bone);
+  gap:0;
+}
+.listing-cards-grid .listing-row:hover,
+.listing-cards-grid .listing-row.is-selected{background:#f0eadf}
+.listing-cards-grid .listing-image-wrap{height:200px}
+.listing-cards-grid .listing-info{padding:14px 16px 18px}
+.listing-cards-grid .listing-info h3{font-size:19px;margin:8px 0 4px}
+.listing-cards-grid .image-label{left:10px;bottom:10px}
+/* Load more sits full-width below the grid */
+.listing-column>.load-more{margin-top:22px;width:100%;display:flex;justify-content:center}
+@media(min-width:1400px){.listing-cards-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:850px){.listing-cards-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){
+  .listing-cards-grid{grid-template-columns:1fr;background:transparent;border:0;gap:0}
+  .listing-cards-grid .listing-row{border-top:1px solid var(--line)}
+  .listing-cards-grid .listing-row:last-child{border-bottom:1px solid var(--line)}
+  .listing-cards-grid .listing-image-wrap{height:220px}
+  .listing-cards-grid .listing-info{padding:12px 0 16px}
+}

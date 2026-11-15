@@ -644,29 +644,31 @@ function App() {
                     {venueFilter !== 'all' ? `near ${venueFilter}` : priceFilter !== 'all' || propertyFilter !== 'all' ? 'filtered' : 'near tournament venues'}
                   </span>
                 </div>
-                {visibleVenues.length ? visibleVenues.map((venue, index) => (
-                  <article
-                    className={`listing-row ${selectedVenue?.id === venue.id ? 'is-selected' : ''}`}
-                    key={venue.id}
-                    onClick={() => setSelectedVenue(venue)}
-                    tabIndex={0}
-                    role="button"
-                    aria-label={`View details for ${venue.name}`}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedVenue(venue); } }}
-                  >
-                    <div className="listing-image-wrap">
-                      <img src={venue.image} alt={`${venue.name} interior`} className="listing-image" />
-                      {index === 0 && <span className="image-label">Guest favourite</span>}
-                    </div>
-                    <div className="listing-info">
-                      <div className="listing-topline"><span>{venue.type}</span><button className="heart-button" onClick={(event) => { event.stopPropagation(); toggleFavorite(venue); }} aria-label={`Save ${venue.name}`}><Heart size={18} fill={isFavorited(venue) ? 'currentColor' : 'none'} /></button></div>
-                      <h3>{venue.name}</h3>
-                      <p className="muted-line">{venue.area} <span>·</span> {venue.distance}</p>
-                      <div className="tags">{venue.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                      <div className="listing-bottom"><span className="rating">{venue.reviews > 0 ? <><Star size={13} fill="currentColor" /> {venue.rating} <small>({venue.reviews})</small></> : <small style={{ color: '#938b7e' }}>New listing</small>}</span><span className="rate"><strong>KSh {venue.rate.toLocaleString()}</strong> / night</span></div>
-                    </div>
-                  </article>
-                )) : <div className="empty-state"><Search size={20} /><p>No stays matched that place. Try searching Nairobi.</p></div>}
+                <div className="listing-cards-grid">
+                  {visibleVenues.length ? visibleVenues.map((venue, index) => (
+                    <article
+                      className={`listing-row ${selectedVenue?.id === venue.id ? 'is-selected' : ''}`}
+                      key={venue.id}
+                      onClick={() => setSelectedVenue(venue)}
+                      tabIndex={0}
+                      role="button"
+                      aria-label={`View details for ${venue.name}`}
+                      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedVenue(venue); } }}
+                    >
+                      <div className="listing-image-wrap">
+                        <img src={venue.image} alt={`${venue.name} interior`} className="listing-image" />
+                        {index === 0 && <span className="image-label">Guest favourite</span>}
+                      </div>
+                      <div className="listing-info">
+                        <div className="listing-topline"><span>{venue.type}</span><button className="heart-button" onClick={(event) => { event.stopPropagation(); toggleFavorite(venue); }} aria-label={`Save ${venue.name}`}><Heart size={18} fill={isFavorited(venue) ? 'currentColor' : 'none'} /></button></div>
+                        <h3>{venue.name}</h3>
+                        <p className="muted-line">{venue.area} <span>·</span> {venue.distance}</p>
+                        <div className="tags">{venue.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                        <div className="listing-bottom"><span className="rating">{venue.reviews > 0 ? <><Star size={13} fill="currentColor" /> {venue.rating} <small>({venue.reviews})</small></> : <small style={{ color: '#938b7e' }}>New listing</small>}</span><span className="rate"><strong>KSh {venue.rate.toLocaleString()}</strong> / night</span></div>
+                      </div>
+                    </article>
+                  )) : <div className="empty-state"><Search size={20} /><p>No stays matched that place. Try searching Nairobi.</p></div>}
+                </div>
                 {hasMoreListings && (
                   <button className="outline-button load-more" onClick={() => void handleLoadMore()} disabled={loadingMore}>
                     {loadingMore ? <><span className="spin" style={{ display: 'inline-block' }}>↻</span> Loading…</> : <>Load more stays <ArrowRight size={16} /></>}
