@@ -646,3 +646,16 @@ textarea:focus-visible,
   color:#8b8276;
   font-weight:400;
 }
+
+/* ── Listing count — align with page padding ───────────────────────────────── */
+.listing-count{padding-left:0;margin-left:0}
+/* The count sits inside results-section which already has 8vw padding,
+   so no extra left padding needed — but listing-column must not add its own */
+.listing-column{padding-left:0;padding-right:0}
+
+/* ── Card info bg — match bone, no white bleed ─────────────────────────────── */
+.listing-cards-grid .listing-row,
+.listing-cards-grid .listing-info,
+.listing-cards-grid .listing-bottom{background:var(--bone)}
+.listing-cards-grid .listing-row:hover .listing-info,
+.listing-cards-grid .listing-row.is-selected .listing-info{background:#f0eadf}
