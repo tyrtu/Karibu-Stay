@@ -659,3 +659,30 @@ textarea:focus-visible,
 .listing-cards-grid .listing-bottom{background:var(--bone)}
 .listing-cards-grid .listing-row:hover .listing-info,
 .listing-cards-grid .listing-row.is-selected .listing-info{background:#f0eadf}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DEFINITIVE LISTING GRID FIX — overrides all previous conflicting rules
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Section takes full width, bone bg, standard page padding */
+.results-section{padding:60px 8vw;background:var(--bone)}
+
+/* listing-column: block, no padding of its own, full width */
+.listing-column{display:block !important;width:100% !important;max-height:none !important;overflow:visible !important;padding:0 !important;margin:0 !important;background:transparent !important}
+
+/* Count bar: no extra indentation */
+.listing-count{padding:20px 0 !important;margin:0 !important;border-top:1px solid var(--line);border-bottom:0;background:transparent !important}
+
+/* Grid: 3 cols, bone bg, gap, no border */
+.listing-cards-grid{display:grid !important;grid-template-columns:repeat(3,1fr) !important;gap:20px !important;background:transparent !important;border:0 !important;width:100% !important}
+@media(max-width:1024px){.listing-cards-grid{grid-template-columns:repeat(2,1fr) !important}}
+@media(max-width:520px){.listing-cards-grid{grid-template-columns:1fr !important;gap:14px !important}}
+
+/* Cards: bone bg everywhere, no white bleed */
+.listing-cards-grid .listing-row{background:var(--bone) !important;border:1px solid var(--line) !important;border-radius:6px !important;overflow:hidden !important;padding:0 !important;gap:0 !important;grid-template-columns:1fr !important;box-shadow:0 1px 4px rgba(26,22,17,.06)}
+.listing-cards-grid .listing-row:hover,.listing-cards-grid .listing-row.is-selected{background:#f0eadf !important;box-shadow:0 4px 16px rgba(26,22,17,.12);transform:translateY(-2px)}
+.listing-cards-grid .listing-image-wrap{height:200px !important;background:#ddd;border-radius:0 !important}
+.listing-cards-grid .listing-info{background:transparent !important;padding:14px 16px 18px !important}
+.listing-cards-grid .listing-info h3{font-size:17px !important;margin:6px 0 4px !important}
+
+@media(max-width:850px){.results-section{padding:48px 5vw}}
