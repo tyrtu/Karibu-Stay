@@ -689,3 +689,6 @@ textarea:focus-visible,
 
 /* ── listing-column width fix — let parent padding control edges ───────────── */
 .listing-column{width:auto !important}
+
+/* ── Remove border box around listing count ────────────────────────────────── */
+.listing-count{border:0 !important;outline:0 !important;box-shadow:none !important}
