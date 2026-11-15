@@ -619,3 +619,30 @@ textarea:focus-visible,
   font-size:12px;
   margin-bottom:10px;
 }
+
+/* ── Listing count — deliberate header treatment ───────────────────────────── */
+.listing-count{
+  padding:22px 0 20px;
+  margin-bottom:0;
+  border-top:1px solid var(--line);
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  background:var(--bone);
+}
+.listing-count>span:first-child{
+  font-family:'Playfair Display',serif;
+  font-size:22px;
+  font-weight:500;
+  letter-spacing:-.02em;
+  color:var(--ink);
+  text-transform:none;
+}
+.listing-count .subtle{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:#8b8276;
+  font-weight:400;
+}
