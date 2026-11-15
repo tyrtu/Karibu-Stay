@@ -561,3 +561,7 @@ textarea:focus-visible,
 @media(min-width:1400px){.results-section>.listing-column .listing-cards-grid{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:1024px){.results-section>.listing-column .listing-cards-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.results-section>.listing-column .listing-cards-grid{grid-template-columns:1fr;background:transparent;border:0;gap:0}}
+
+/* ── Card grid spacing ─────────────────────────────────────────────────────── */
+.results-section>.listing-column .listing-cards-grid{gap:20px;background:transparent;border:0}
+@media(max-width:520px){.results-section>.listing-column .listing-cards-grid{gap:14px}}
