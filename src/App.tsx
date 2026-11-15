@@ -674,6 +674,7 @@ function App() {
                 )}
               </div>
 
+              {/* MAP PANEL — temporarily commented out, to be re-integrated with a fixed-position approach
               <div className="map-panel" aria-label={`Map of stays near ${venueFilter !== 'all' ? venueFilter : 'tournament venues'}`}>
                 <div className="map-overlay map-title">
                   <span className="map-dot" />
@@ -681,7 +682,6 @@ function App() {
                   <span>·</span>
                   {(() => {
                     const venueMarker = mapMarkers.find((m) => m.isVenue && (venueFilter === 'all' || m.title === venueFilter));
-                    // Derive city from the venue name heuristically
                     if (!venueMarker) return 'Nairobi';
                     const name = venueMarker.title.toLowerCase();
                     if (name.includes('mandela')) return 'Kampala';
@@ -700,6 +700,7 @@ function App() {
                 />
                 <div className="map-legend"><span><i className="legend-stay" /> Stay</span><span><i className="legend-venue" /> Venue</span></div>
               </div>
+              */}
             </div>
           </section>
 

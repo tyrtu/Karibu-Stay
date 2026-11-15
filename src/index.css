@@ -432,3 +432,32 @@ textarea:focus-visible,
 @media(max-width:520px){
   .map-panel{height:300px;min-height:300px}
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LISTINGS — full-width grid (map temporarily removed)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Single column, full width — undo all previous layout constraints */
+.results-layout{display:block}
+.results-section{padding-bottom:60px}
+.listing-column{
+  max-height:none;
+  overflow:visible;
+  padding-right:0;
+}
+
+/* Listings as a 2-column card grid on wide screens */
+.listing-cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:0;
+}
+.listing-cards-grid .listing-row{
+  border-top:1px solid var(--line);
+  border-right:0;
+  border-bottom:0;
+  border-left:0;
+}
+.listing-cards-grid .listing-row:last-child{
+  border-bottom:1px solid var(--line);
+}
