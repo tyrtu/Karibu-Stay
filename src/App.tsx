@@ -638,13 +638,29 @@ function App() {
 
             <div className="listing-column">
                 <div className="listing-count">
-                  <span>{loadingListings ? 'Loading stays…' : `${visibleVenues.length || 0} ${visibleVenues.length === 1 ? 'stay' : 'stays'}`}</span>
+                  <span>{loadingListings ? '' : `${visibleVenues.length || 0} ${visibleVenues.length === 1 ? 'stay' : 'stays'}`}</span>
                   <span className="subtle">
-                    {venueFilter !== 'all' ? `near ${venueFilter}` : priceFilter !== 'all' || propertyFilter !== 'all' ? 'filtered' : 'near tournament venues'}
+                    {!loadingListings && (venueFilter !== 'all' ? `near ${venueFilter}` : priceFilter !== 'all' || propertyFilter !== 'all' ? 'filtered' : 'near tournament venues')}
                   </span>
                 </div>
                 <div className="listing-cards-grid">
-                  {visibleVenues.length ? visibleVenues.map((venue, index) => (
+                  {loadingListings ? (
+                    Array.from({ length: 6 }).map((_, i) => (
+                      <div className="listing-row skeleton-card" key={i} aria-hidden="true">
+                        <div className="skeleton-image" />
+                        <div className="skeleton-info">
+                          <div className="skeleton-line skeleton-line-sm" />
+                          <div className="skeleton-line skeleton-line-lg" />
+                          <div className="skeleton-line skeleton-line-md" />
+                          <div className="skeleton-line skeleton-line-sm" />
+                          <div className="skeleton-bottom">
+                            <div className="skeleton-line skeleton-line-sm" />
+                            <div className="skeleton-line skeleton-line-md" />
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  ) : visibleVenues.length ? visibleVenues.map((venue, index) => (
                     <article
                       className={`listing-row ${selectedVenue?.id === venue.id ? 'is-selected' : ''}`}
                       key={venue.id}
@@ -744,6 +760,7 @@ function App() {
           key={selectedVenue.id}
           venue={selectedVenue}
           reviews={detailReviews}
+          signedIn={Boolean(accountId)}
           onClose={() => setSelectedVenue(null)}
           onBook={() => (accountId ? setBookingVenue(selectedVenue) : openAuth('signin'))}
         />

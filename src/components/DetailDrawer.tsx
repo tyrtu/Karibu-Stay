@@ -29,6 +29,7 @@ type Props = {
   reviews: ReviewRecord[];
   onClose: () => void;
   onBook: () => void;
+  signedIn: boolean;
 };
 
 const cancellationLabels: Record<string, string> = {
@@ -37,7 +38,7 @@ const cancellationLabels: Record<string, string> = {
   strict: 'Strict — 50% refund up to 7 days before check-in',
 };
 
-export default function DetailDrawer({ venue, reviews, onClose, onBook }: Props) {
+export default function DetailDrawer({ venue, reviews, onClose, onBook, signedIn }: Props) {
   const galleryImages = venue.images.length > 0 ? venue.images : [{ url: venue.image, alt_text: venue.name, sort_order: 0 }];
   const [activeImage, setActiveImage] = useState(0);
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -182,7 +183,14 @@ export default function DetailDrawer({ venue, reviews, onClose, onBook }: Props)
           <div className="listing-bottom" style={{ marginBottom: 12 }}>
             <span className="rate"><strong>KSh {venue.rate.toLocaleString()}</strong> / night</span>
           </div>
-          <button className="primary-button" onClick={onBook}>Request to book <ArrowRight size={16} /></button>
+          {!signedIn && (
+            <p className="drawer-auth-hint">
+              You'll need to sign in to request this stay.
+            </p>
+          )}
+          <button className="primary-button" onClick={onBook}>
+            {signedIn ? 'Request to book' : 'Sign in to book'} <ArrowRight size={16} />
+          </button>
         </div>
       </div>
       </div>

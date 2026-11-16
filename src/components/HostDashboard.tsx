@@ -139,11 +139,23 @@ export default function HostDashboard({
                       </button>
 
                       {/* Publish / Unpublish */}
-                      {listing.status === 'draft' && (
-                        <button className="outline-button small" onClick={() => onToggleStatus(listing.id, 'published')}>
-                          Publish
-                        </button>
-                      )}
+                      {listing.status === 'draft' && (() => {
+                        const verStatus = profile?.verification_status;
+                        const canPublish = verStatus === 'verified';
+                        const isPending = verStatus === 'pending';
+                        return canPublish ? (
+                          <button className="outline-button small" onClick={() => onToggleStatus(listing.id, 'published')}>
+                            Publish
+                          </button>
+                        ) : (
+                          <span
+                            className="publish-gated"
+                            title={isPending ? 'Verification is under review. You can publish once approved.' : 'Complete identity verification to publish this listing.'}
+                          >
+                            {isPending ? 'Verification pending' : 'Verify to publish'}
+                          </span>
+                        );
+                      })()}
                       {listing.status === 'published' && (
                         <button className="outline-button small" onClick={() => onToggleStatus(listing.id, 'draft')}>
                           Unpublish
