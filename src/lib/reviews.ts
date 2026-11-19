@@ -33,21 +33,30 @@ export type ReviewAggregate = {
 export async function getReviewAggregates(listingIds: string[]): Promise<Map<string, ReviewAggregate>> {
   if (listingIds.length === 0) return new Map();
 
-  const { data, error } = await supabase.rpc('get_review_aggregates', {
-    p_listing_ids: listingIds,
-  });
+  const { data, error } = await supabase
+    .from('reviews')
+    .select('listing_id, rating')
+    .in('listing_id', listingIds);
 
   if (error) return new Map();
 
-  const map = new Map<string, ReviewAggregate>();
-  for (const row of data ?? []) {
-    map.set(row.listing_id as string, {
-      listing_id: row.listing_id as string,
-      avg_rating: Number(row.avg_rating),
-      review_count: Number(row.review_count),
-    });
+  const grouped = new Map<string, number[]>();
+  for (const review of data ?? []) {
+    const ratings = grouped.get(review.listing_id as string) ?? [];
+    ratings.push(Number(review.rating));
+    grouped.set(review.listing_id as string, ratings);
   }
-  return map;
+
+  return new Map(
+    [...grouped].map(([listing_id, ratings]) => [
+      listing_id,
+      {
+        listing_id,
+        avg_rating: ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length,
+        review_count: ratings.length,
+      },
+    ]),
+  );
 }
 
 export async function createReview(bookingId: string, listingId: string, rating: number, comment: string): Promise<void> {

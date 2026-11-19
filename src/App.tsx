@@ -225,7 +225,7 @@ function App() {
               maxGuests: listing.max_guests,
               bedrooms: listing.bedrooms,
               bathrooms: listing.bathrooms,
-              amenities: listing.amenities,
+              amenities: listing.amenities,                                                
               houseRules: listing.house_rules,
               cancellationPolicy: listing.cancellation_policy,
               hostName: listing.host?.full_name,
